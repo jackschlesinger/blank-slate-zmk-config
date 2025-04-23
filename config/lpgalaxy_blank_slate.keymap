@@ -17,7 +17,7 @@
 #define ADJUST 5
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
-&lt { quick_tap_ms = <200>; };
+&mt { tapping-term-ms = <300>; };
 
 #define BT(n) BT_SEL n
 
@@ -35,17 +35,10 @@
     };
     
     tap_dances {
-        shifty: shift_caps_word {
-            compatible = "zmk,behavior-tap-dance";
-            label = "TD_SHIFTY";
-            #binding-cells = <0>;
-            tapping-term-ms = <300>;
-            bindings = <&kp LSHFT>, <&caps_word>;
-        };
         tabgrv: tab_grave {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <300>;
+            tapping-term-ms = <200>;
             bindings = <&kp TAB>, <&kp GRAVE>;
         };
         ctrlad: ctrl_alt_del {
@@ -177,9 +170,9 @@
 /*
  * Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | BT 0 | BT 1 | BT 2 | BT 3 | BT 4 |      |      |      |      |ClearAll|Clear |
+ * | BT 0 | BT 1 | BT 2 | BT 3 | BT 4 |      |      |      |      |      |ClearAll|Clear |
  * |------+------+------+------+------+------+------+------+------+------+--------+------|
- * |      |      |      |      |      |      |      |Qwerty|WinQwt|      |        |      |
+ * |DISC 0|DISC 1|DISC 2|DISC 3|DISC 4|      |      |Qwerty|WinQwt|      |        |      |
  * |------+------+------+------+------+------+------+------+------+------+--------+------|
  * |      |      |      |      |      |      |      |      |      |      |        | GAME |
  * |------+------+------+------+------+------+------+------+------+------+--------+------|
