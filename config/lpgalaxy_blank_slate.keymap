@@ -10,11 +10,11 @@
 #include <dt-bindings/zmk/outputs.h>
 
 #define BASE 0
-#define LOWER 1
-#define RAISE 2
-#define ADJUST 3
-#define WIN_BASE 4
-#define GAME 5
+#define WIN_BASE 1
+#define GAME 2
+#define LOWER 3
+#define RAISE 4
+#define ADJUST 5
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -87,6 +87,51 @@
                 &ctrlad    &kp LALT     &kp LGUI   &kp LCMD    &mo LOWER      &kp SPACE       &mo RAISE   &kp LEFT   &kp DOWN   &kp UP         &kp RIGHT  
             >;
         };
+/*        
+ * Windows Qwerty (Reverses the homerow mod for ctrl and gui, otherwise the same)
+ * ,-----------------------------------------------------------------------------------.
+ * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Ctrl | Alt  | GUI  | Prog |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+        windows_layer {
+            label = "Windows";
+            bindings = <
+                &tabgrv    &kp Q        &kp W      &kp E       &kp R       &kp T     &kp Y    &kp U       &kp I       &kp O      &kp P          &kp BKSP
+                &kp ESC    &mt LCMD A   &mt LALT S &mt LCTRL D &mt LSHFT F &kp G     &kp H    &mt RSHFT J &mt RCTRL K &mt RALT L &mt RCMD SEMI  &kp QUOT
+                &kp LSHFT  &kp Z        &kp X      &kp C       &kp V       &kp B     &kp N    &kp M       &kp COMMA   &kp DOT    &kp FSLH       &kp RET
+                &ctrlad    &kp LALT     &kp LGUI  &kp LALT     &mo LOWER      &kp SPACE       &mo RAISE   &kp LEFT    &kp DOWN   &kp UP         &kp RIGHT     
+            >;
+        };
+/*
+ * Game
+ * ,------------------------------------------------------------------------------.
+ * | Esc  |  Q  |  W  |  E  |  R  |  5  |  6  |   7  |   8  |   9  |   0   | Bksp |
+ * |------+-----+-----+-----+-----+-----+-----+------+------+------+-------+------|
+ * | Tab  |  A  |  S  |  D  |  F  |  G  |  H  |   J  |   K  |   L  |   ;   |  "   |
+ * |------+-----+-----+-----+-----+-----+-----+------+------+------+-------+------|
+ * | Shift|  Z  |  X  |  C  |  V  |  B  |  N  |   M  |   ,  |  Up  |   /   |Enter |
+ * |------+-----+-----+-----+-----+-----+-----+------+------+------+-------+------|
+ * | Ctrl |  4  |  3  |  2  |  1  |   Space   |Raise | Left | Down | Right |Lower |   
+ * `-------------------------------------------------------------------------------'
+ */
+        game_layer {
+            label = "Game";
+            bindings = <
+                &kp ESC    &kp Q    &kp W   &kp E    &kp R    &kp T     &kp Y    &kp U       &kp I       &kp O      &kp P       &kp BKSP
+                &kp TAB    &kp A    &kp S   &kp D    &kp F    &kp G     &kp H    &kp J       &kp K       &kp L      &kp SEMI    &kp QUOT
+                &kp LSHFT  &kp Z    &kp X   &kp C    &kp V    &kp B     &kp N    &kp M       &kp COMMA   &kp UP     &kp FSLH    &kp RET
+                &kp LCTRL  &kp N4   &kp N3  &kp N2   &kp N1      &kp SPACE       &mo RAISE   &kp LEFT    &kp DOWN   &kp RIGHT   &mo LOWER     
+            >;
+        };
+
+
+    };
 /*
  * Lower
  * ,-----------------------------------------------------------------------------------.
@@ -132,68 +177,25 @@
 /*
  * Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |Qwerty|WinQwt|      |      |      |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      | GAME |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
- * `-----------------------------------------------------------------------------------'
+ * |      | BT 0 | BT 1 | BT 2 | BT 3 | BT 4 |      |      |      |      |ClearAll|Clear |
+ * |------+------+------+------+------+------+------+------+------+------+--------+------|
+ * |      |      |      |      |      |      |      |Qwerty|WinQwt|      |        |      |
+ * |------+------+------+------+------+------+------+------+------+------+--------+------|
+ * |      |      |      |      |      |      |      |      |      |      |        | GAME |
+ * |------+------+------+------+------+------+------+------+------+------+--------+------|
+ * |      |      |      |      |      |             |      |      |      |        |      |
+ * `-------------------------------------------------------------------------------------'
  */
         adjust_layer {
             label = "Adjust";
             bindings = <
-                &none  &none  &none  &none  &none  &none  &none  &none      &none          &none  &none  &none
-                &none  &none  &none  &none  &none  &none  &none  &tog BASE  &tog WIN_BASE  &none  &none  &none
-                &none  &none  &none  &none  &none  &none  &none  &none      &none          &none  &none  &tog GAME
-                &none  &none  &none  &none  &none      &none     &none      &none          &none  &none  &none
+                &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none  &none  &none      &none          &none  &bt BT_CLR_ALL  &bt BT_CLR
+                &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &none  &none  &tog BASE  &tog WIN_BASE  &none  &none           &none
+                &none         &none         &none         &none         &none         &none  &none  &none      &none          &none  &none           &tog GAME
+                &none         &none         &none         &none         &none             &none     &none      &none          &none  &none           &none
             >;
         };
-/*        
- * Windows Qwerty (Reverses the homerow mod for ctrl and gui, otherwise the same)
- * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Ctrl | Alt  | GUI  | Prog |Lower |    Space    |Raise | Left | Down |  Up  |Right |
- * `-----------------------------------------------------------------------------------'
- */
-        windows_layer {
-            label = "Windows";
-            bindings = <
-                &tabgrv    &kp Q        &kp W      &kp E       &kp R       &kp T     &kp Y    &kp U       &kp I       &kp O      &kp P          &kp BKSP
-                &kp ESC    &mt LCMD A   &mt LALT S &mt LCTRL D &mt LSHFT F &kp G     &kp H    &mt RSHFT J &mt RCTRL K &mt RALT L &mt RCMD SEMI  &kp QUOT
-                &kp LSHFT  &kp Z        &kp X      &kp C       &kp V       &kp B     &kp N    &kp M       &kp COMMA   &kp DOT    &kp FSLH       &kp RET
-                &ctrlad    &kp LALT     &kp LGUI  &kp LALT     &mo LOWER      &kp SPACE       &mo RAISE   &kp LEFT    &kp DOWN   &kp UP         &kp RIGHT     
-            >;
-        };
-/*
- * Game
- * ,------------------------------------------------------------------------------.
- * | Esc  |  Q  |  W  |  E  |  R  |  5  |  6  |   7  |   8  |   9  |   0   | Bksp |
- * |------+-----+-----+-----+-----+-----+-----+------+------+------+-------+------|
- * | Tab  |  A  |  S  |  D  |  F  |  G  |  H  |   J  |   K  |   L  |   ;   |  "   |
- * |------+-----+-----+-----+-----+-----+-----+------+------+------+-------+------|
- * | Shift|  Z  |  X  |  C  |  V  |  B  |  N  |   M  |   ,  |  Up  |   /   |Enter |
- * |------+-----+-----+-----+-----+-----+-----+------+------+------+-------+------|
- * | Ctrl |  4  |  3  |  2  |  1  |   Space   |Raise | Left | Down | Right |Lower |
- * `-------------------------------------------------------------------------------'
- */
-        game_layer {
-            label = "Game";
-            bindings = <
-                &kp ESC    &kp Q    &kp W   &kp E    &kp R    &kp T     &kp Y    &kp U       &kp I       &kp O      &kp P       &kp BKSP
-                &kp TAB    &kp A    &kp S   &kp D    &kp F    &kp G     &kp H    &kp J       &kp K       &kp L      &kp SEMI    &kp QUOT
-                &kp LSHFT  &kp Z    &kp X   &kp C    &kp V    &kp B     &kp N    &kp M       &kp COMMA   &kp UP     &kp FSLH    &kp RET
-                &kp LCTRL  &kp N4   &kp N3  &kp N2   &kp N1      &kp SPACE       &mo RAISE   &kp LEFT    &kp DOWN   &kp RIGHT   &mo LOWER     
-            >;
-        };
-
-
-    };
 };
+
+
 
