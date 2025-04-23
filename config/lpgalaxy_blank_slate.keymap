@@ -129,6 +129,7 @@
                 &kp TAB    &kp A    &kp S   &kp D    &kp F    &kp G     &kp H    &kp J       &kp K       &kp L      &kp SEMI    &kp QUOT
                 &kp LSHFT  &kp Z    &kp X   &kp C    &kp V    &kp B     &kp N    &kp M       &kp COMMA   &kp UP     &kp FSLH    &kp RET
                 &kp LCTRL  &kp N4   &kp N3  &kp N2   &kp N1      &kp SPACE       &mo RAISE   &kp LEFT    &kp DOWN   &kp RIGHT   &mo LOWER     
+            >;
         };
 /*
  * Lower
