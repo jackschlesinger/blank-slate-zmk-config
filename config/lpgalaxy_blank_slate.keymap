@@ -39,13 +39,13 @@
             compatible = "zmk,behavior-tap-dance";
             label = "TD_SHIFTY";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             bindings = <&kp LSHFT>, <&caps_word>;
         };
         tabgrv: tab_grave {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
+            tapping-term-ms = <300>;
             bindings = <&kp TAB>, <&kp GRAVE>;
         };
         ctrlad: ctrl_alt_del {
@@ -58,7 +58,7 @@
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        adjust_layer {
+        tri_layer {
             if-layers = <LOWER RAISE>;
             then-layer = <ADJUST>;
         };
