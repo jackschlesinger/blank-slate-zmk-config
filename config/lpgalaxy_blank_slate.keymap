@@ -16,7 +16,7 @@
 #define RAISE 4
 #define ADJUST 5
 
-&mt { tapping-term-ms = <300>; };
+&mt { tapping-term-ms = <500>; };
 
 #define BT(n) BT_SEL n
 #define BD(n) BT_DISC n
